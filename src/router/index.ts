@@ -22,6 +22,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "masonry" */ "../views/demo/masonry.vue"),
   },
+  {
+    path: "/websocket",
+    name: "websocket",
+    component: () =>
+      import(/* webpackChunkName: "masonry" */ "../views/demo/websocket.vue"),
+  },
 ];
 
 const router = createRouter({
