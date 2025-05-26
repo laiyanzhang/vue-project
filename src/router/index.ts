@@ -28,6 +28,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "masonry" */ "../views/demo/websocket.vue"),
   },
+  {
+    path: "/canvas",
+    name: "canvas",
+    component: () =>
+      import(/* webpackChunkName: "masonry" */ "../views/demo/canvas.vue"),
+  },
 ];
 
 const router = createRouter({

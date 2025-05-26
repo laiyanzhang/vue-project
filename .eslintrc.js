@@ -20,5 +20,6 @@ module.exports = {
     "vue/multi-word-component-names": "off",
     semi: "off",
     "@typescript-eslint/semi": "off",
+    "vue/no-v-model-argument": "off",
   },
 }
