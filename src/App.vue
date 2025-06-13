@@ -6,6 +6,8 @@
       <router-link to="/masonry">masonry</router-link> |
       <router-link to="/websocket">websocket</router-link> |
       <router-link to="/canvas">canvas</router-link> |
+      <router-link to="/animation">animation</router-link> |
+      <router-link to="/imageView">imageView</router-link> |
     </nav>
     <router-view />
   </div>

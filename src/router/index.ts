@@ -26,13 +26,25 @@ const routes: Array<RouteRecordRaw> = [
     path: "/websocket",
     name: "websocket",
     component: () =>
-      import(/* webpackChunkName: "masonry" */ "../views/demo/websocket.vue"),
+      import(/* webpackChunkName: "websocket" */ "../views/demo/websocket.vue"),
   },
   {
     path: "/canvas",
     name: "canvas",
     component: () =>
-      import(/* webpackChunkName: "masonry" */ "../views/demo/canvas.vue"),
+      import(/* webpackChunkName: "canvas" */ "../views/demo/canvas.vue"),
+  },
+  {
+    path: "/animation",
+    name: "animation",
+    component: () =>
+      import(/* webpackChunkName: "animation" */ "../views/demo/animation.vue"),
+  },
+  {
+    path: "/imageView",
+    name: "imageView",
+    component: () =>
+      import(/* webpackChunkName: "imageView" */ "../views/demo/imageView.vue"),
   },
 ];
 

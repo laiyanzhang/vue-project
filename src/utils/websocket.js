@@ -2,6 +2,8 @@ class WebSocketService {
   constructor() {
     this.listeners = {};
     this.reconnectDelay = 5000; // 重连延迟 5秒
+    this.maxReconectTime = 3
+    this.currentReconectTime = 0
   }
 
   connect() {
@@ -9,6 +11,7 @@ class WebSocketService {
     else if(process.env.NODE_ENV === 'development') this.socket = new WebSocket(`ws://localhost:3000`);
     
     this.socket.onopen = () => {
+      this.currentReconectTime = 0
       console.log('WebSocket连接创建成功');
     };
     
@@ -23,8 +26,11 @@ class WebSocketService {
       if (event.code === 1000) {
         console.log('WebSocket连接正常关闭');
       } else {
-        console.log('WebSocket连接关闭，尝试重连...');
-        setTimeout(() => this.connect(), this.reconnectDelay);
+        if(this.currentReconectTime < this.maxReconectTime) {
+          console.log('WebSocket连接关闭，尝试重连...');
+          this.currentReconectTime++
+          setTimeout(() => this.connect(), this.reconnectDelay);
+        }
       }
     };
     
