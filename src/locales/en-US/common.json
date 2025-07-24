@@ -1,0 +1,19 @@
+{
+  "1-guo-du-transition": "1. Transition",
+  "2-zhuan-huan-transform": "2. Convert transform",
+  "21-ka-pian-fan-zhuan": "2-1. Card flip",
+  "22-li-fang-ti": "2-2. Cube",
+  "bei-mian": "back",
+  "hou": "back",
+  "kai-shi-dong-hua": "Start animation",
+  "qian": "forward",
+  "rotatex-rotate-x-deg-rotatey-rotate-y-deg": "rotateX({0}deg) rotateY({1}deg)",
+  "shang": "superior",
+  "ting-zhi-dong-hua": "Stop animation",
+  "welcome": "Welcome to my app",
+  "xia": "Down",
+  "you": "right",
+  "zheng-mian": "front",
+  "zhong-zhi-wei-zhi": "Reset position",
+  "zuo": "Left"
+}

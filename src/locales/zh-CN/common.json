@@ -1,0 +1,19 @@
+{
+  "1-guo-du-transition": "1.过渡transition",
+  "2-zhuan-huan-transform": "2.转换transform",
+  "21-ka-pian-fan-zhuan": "2-1.卡片翻转",
+  "22-li-fang-ti": "2-2.立方体",
+  "bei-mian": "背面",
+  "hou": "后",
+  "kai-shi-dong-hua": "开始动画",
+  "qian": "前",
+  "rotatex-rotate-x-deg-rotatey-rotate-y-deg": "rotateX({0}deg) rotateY({1}deg)",
+  "shang": "上",
+  "ting-zhi-dong-hua": "停止动画",
+  "welcome": "欢迎来到我的应用",
+  "xia": "下",
+  "you": "右",
+  "zheng-mian": "正面",
+  "zhong-zhi-wei-zhi": "重置位置",
+  "zuo": "左"
+}

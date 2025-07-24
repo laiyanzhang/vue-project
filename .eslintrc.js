@@ -14,6 +14,10 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
+  globals: {
+    "$t": "readonly",  // 添加这一行
+    "$i18n": "readonly" // 如果需要也可以添加
+  },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",

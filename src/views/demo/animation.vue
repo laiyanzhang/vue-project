@@ -1,42 +1,42 @@
 <template>
   <div class="animation">
-    <h2>1.过渡transition</h2>
+    <h2>{{ $t('common.1-guo-du-transition') }}</h2>
     <div class="transition">
       <div class="box"></div>
     </div>
-    <h2>2.转换transform</h2>
+    <h2>{{ $t('common.2-zhuan-huan-transform') }}</h2>
     <div class="transform">
       <div class="box rotate">rotate</div>
       <div class="box translate">translate</div>
       <div class="box scale">scale</div>
       <div class="box skew">skew</div>
     </div>
-    <h3>2-1.卡片翻转</h3>
+    <h3>{{ $t('common.21-ka-pian-fan-zhuan') }}</h3>
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <!-- 正面内容 -->
-          <h2>正面</h2>
+          <h2>{{ $t('common.zheng-mian') }}</h2>
         </div>
         <div class="flip-card-back">
           <!-- 背面内容 -->
-          <h2>背面</h2>
+          <h2>{{ $t('common.bei-mian') }}</h2>
         </div>
       </div>
     </div>
-    <h3>2-2.立方体</h3>
+    <h3>{{ $t('common.22-li-fang-ti') }}</h3>
     <div class="operate">
-      <a-button @click="handleReset">重置位置</a-button>
+      <a-button @click="handleReset">{{ $t('common.zhong-zhi-wei-zhi') }}</a-button>
       <a-button @click="handleAnimate">{{ animateText }}</a-button>
     </div>
     <div class="scene" ref="scene">
       <div class="cube" ref="cube">
-        <div class="cube__face cube__face--front">前</div>
-        <div class="cube__face cube__face--back">后</div>
-        <div class="cube__face cube__face--right">右</div>
-        <div class="cube__face cube__face--left">左</div>
-        <div class="cube__face cube__face--top">上</div>
-        <div class="cube__face cube__face--bottom">下</div>
+        <div class="cube__face cube__face--front">{{ $t('common.qian') }}</div>
+        <div class="cube__face cube__face--back">{{ $t('common.hou') }}</div>
+        <div class="cube__face cube__face--right">{{ $t('common.you') }}</div>
+        <div class="cube__face cube__face--left">{{ $t('common.zuo') }}</div>
+        <div class="cube__face cube__face--top">{{ $t('common.shang') }}</div>
+        <div class="cube__face cube__face--bottom">{{ $t('common.xia') }}</div>
       </div>
     </div>
   </div>
@@ -44,9 +44,11 @@
 
 <script>
 import { defineComponent, computed, ref, reactive, onBeforeUnmount, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n' 
 
 export default defineComponent({
   setup() {
+    const {t} = useI18n()
     const cube = ref(null)
     const scene = ref(null)
     const isDragging = ref(false)
@@ -60,7 +62,7 @@ export default defineComponent({
     })
     const autoRotate = ref(false)
     const animationId = ref(null)
-    const animateText = computed(() => autoRotate.value ? '停止动画' : '开始动画')
+    const animateText = computed(() => autoRotate.value ? t('common.ting-zhi-dong-hua') : t('common.kai-shi-dong-hua'))
 
     const updateCubePosition = () => {
       cube.value.style.transform = `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`;
