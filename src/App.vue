@@ -8,6 +8,8 @@
       <router-link to="/canvas">canvas</router-link> |
       <router-link to="/animation">animation</router-link> |
       <router-link to="/imageView">imageView</router-link> |
+      <router-link to="/worker">worker</router-link> |
+      <router-link to="/editor">editor</router-link> |
     </nav>
     <router-view />
   </div>

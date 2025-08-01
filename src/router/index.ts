@@ -46,6 +46,18 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "imageView" */ "../views/demo/imageView.vue"),
   },
+  {
+    path: "/worker",
+    name: "worker",
+    component: () =>
+      import(/* webpackChunkName: "worker" */ "../views/demo/worker.vue"),
+  },
+  {
+    path: "/editor",
+    name: "editor",
+    component: () =>
+      import(/* webpackChunkName: "worker" */ "../views/demo/editor.vue"),
+  },
 ];
 
 const router = createRouter({

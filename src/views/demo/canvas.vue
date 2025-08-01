@@ -27,7 +27,7 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { compressImage, applyFilter, drawComplexScene, extractFrameFromLocalFile } from '@/utils/canvas.js';
+import { compressImage, applyFilter ,drawComplexScene, extractFrameFromLocalFile } from '@/utils/canvas.js';
 import { downloadFile } from '@/utils/download.js';
 export default defineComponent({
   name: "CanvasDemo",
@@ -57,28 +57,21 @@ export default defineComponent({
       }
     };
 
-    const handleCreateFilter = () => {
+    const handleCreateFilter = async () => {     
       const file = fileList.value[0]?.originFileObj;
       if(!file || file.type.includes('video/')) return;
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const img = new Image();
-        img.onload = function() {
-          const container = document.querySelector('.canvas-container');
-          const ctx = canvas.value.getContext("2d");
-          // 设置canvas的宽高
-          const maxWidth = container.clientWidth;
-          const scaleFactor = maxWidth / img.width;
-          const scaledHeight = img.height * scaleFactor;
-          canvas.value.width = maxWidth;
-          canvas.value.height = scaledHeight;
-          ctx.drawImage(img, 0, 0, maxWidth, scaledHeight);
-          applyFilter(canvas.value, 'sepia');
-        };
-        img.src = event.target.result; // Data URL
-      };
-      reader.readAsDataURL(file);
+      const bitmap = await createImageBitmap(file)
+      const container = document.querySelector('.canvas-container');
+      const ctx = canvas.value.getContext("2d");
+      // 设置canvas的宽高
+      const maxWidth = container.clientWidth;
+      const scaleFactor = maxWidth / bitmap.width;
+      const scaledHeight = bitmap.height * scaleFactor;
+      canvas.value.width = maxWidth;
+      canvas.value.height = scaledHeight;
+      // 绘制图片后再绘制滤镜
+      ctx.drawImage(bitmap, 0, 0, maxWidth, scaledHeight);
+      applyFilter(canvas.value, 'sepia');
     };
 
     const handleCompress = async () => {
@@ -134,15 +127,6 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .svg-container {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
   .operation {
     margin: 20px 0;
     display: flex;
