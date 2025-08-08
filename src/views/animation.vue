@@ -11,7 +11,7 @@
       <div class="box scale">scale</div>
       <div class="box skew">skew</div>
     </div>
-    <h3>{{ $t('common.21-ka-pian-fan-zhuan') }}</h3>
+    <h2>{{ $t('common.21-ka-pian-fan-zhuan') }}</h2>
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <h3>{{ $t('common.22-li-fang-ti') }}</h3>
+    <h2>{{ $t('common.22-li-fang-ti') }}</h2>
     <div class="operate">
       <a-button @click="handleReset">{{ $t('common.zhong-zhi-wei-zhi') }}</a-button>
       <a-button @click="handleAnimate">{{ animateText }}</a-button>
@@ -39,6 +39,13 @@
         <div class="cube__face cube__face--bottom">{{ $t('common.xia') }}</div>
       </div>
     </div>
+    <h2>球体自由落体</h2>
+    <div class="operate">
+      <a-button @click="handleStart">开始</a-button>
+    </div>
+    <div class="ball_scene">
+      <div class="ball" ref="ball"></div>
+    </div>
   </div>
 </template>
 
@@ -51,6 +58,7 @@ export default defineComponent({
     const {t} = useI18n()
     const cube = ref(null)
     const scene = ref(null)
+    const ball = ref(null)
     const isDragging = ref(false)
     const previousMousePosition = reactive({
       x: 0,
@@ -64,10 +72,11 @@ export default defineComponent({
     const animationId = ref(null)
     const animateText = computed(() => autoRotate.value ? t('common.ting-zhi-dong-hua') : t('common.kai-shi-dong-hua'))
 
+    // 更新立方体旋转角度
     const updateCubePosition = () => {
       cube.value.style.transform = `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`;
     }
-    // 鼠标点击时记录位置以及停止东湖
+    // 鼠标点击时记录位置以及停止动画
     const handleMouseDown = (e) => {
       isDragging.value = true
       previousMousePosition.x = e.clientX
@@ -115,11 +124,13 @@ export default defineComponent({
     const handleKeyUp = () => {
       startAutoRotationIfEnabled()
     }
+    // 动画若进行则继续动画
     const startAutoRotationIfEnabled = () => {
       if(autoRotate.value) {
         startAutoRotation()
       }
     }
+    // 开始动画（逐帧调整物体旋转角度）
     const startAutoRotation = () => {
       stopAutoRotation()
       function animate() {
@@ -129,17 +140,20 @@ export default defineComponent({
       }
       animate()
     }
+    // 停止动画
     const stopAutoRotation = () => {
       if (animationId.value) {
         cancelAnimationFrame(animationId.value);
         animationId.value = null;
       }
     }
+    // 响应开始动画按钮
     const handleAnimate = () => {
       autoRotate.value = !autoRotate.value
       if(autoRotate.value) startAutoRotation()
       else stopAutoRotation()
     }
+    // 响应重置位置按钮
     const handleReset = () => {
       rotate.x = 15
       rotate.y = 30
@@ -147,7 +161,6 @@ export default defineComponent({
       stopAutoRotation()
     }
 
-    // 初始化立方体位置
     onMounted(() => {
       updateCubePosition()
       scene.value.addEventListener('mousedown', handleMouseDown)
@@ -170,6 +183,7 @@ export default defineComponent({
       animateText,
       cube,
       scene,
+      ball,
       handleAnimate,
       handleReset
     }
@@ -180,9 +194,13 @@ export default defineComponent({
 <style lang="less" scoped>
 .animation {
   width: 100%;
-  height: 1000px;
-  text-align: left;
+  height: 100%;
+  text-align: center;
+  margin-top: 8px;
   .transition {
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
     .box {
       width: 50px;
       height: 50px;
@@ -203,7 +221,10 @@ export default defineComponent({
   }
   .transform {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 60px;
+    min-height: 200px;
     .box {
       width: 100px;
       height: 100px;
@@ -228,8 +249,10 @@ export default defineComponent({
   .flip-card {
     perspective: 1000px; /* 设置3D透视效果 */
     width: 300px;
+    min-height: 200px;
     height: 200px;
     transform-style: preserve-3d;
+    margin: 12px auto;
     &:hover .flip-card-inner {
       transform: rotateY(180deg); /* 鼠标悬停时翻转180度 */
     }
@@ -264,8 +287,10 @@ export default defineComponent({
     }
   }
   .scene {
+    display: flex;
+    justify-content: center;
     width: 200px;
-    height: 300px;
+    min-height: 200px;
     perspective: 1000px;
     margin: 100px auto;
     .cube {
@@ -321,6 +346,10 @@ export default defineComponent({
   .operate {
     display: flex;
     gap: 8px;
+    justify-content: center;
+  }
+  .ball_scene {
+    height: 300px;
   }
 }
 </style>

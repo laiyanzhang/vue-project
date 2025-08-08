@@ -1,19 +1,26 @@
 <template>
   <div class="masonry">
+    <div class="operation">
+      <a-button @click="handleChangeWay(0)">原始</a-button>
+      <a-button @click="handleChangeWay(1)">CSS</a-button>
+      <a-button @click="handleChangeWay(2)">grid布局</a-button>
+      <a-button @click="handleChangeWay(3)">flex布局</a-button>
+      <a-button @click="handleChangeWay(4)">第三方库</a-button>
+    </div>
     <div class="flex" v-show="way === 0">
-      <div class="item" v-for="(item, index) in 20" :key="index">
+      <div class="item" v-for="(_, index) in 20" :key="index">
         {{ index }}
       </div>
     </div>
     <!-- CSS -->
     <div class="masonry_1" v-show="way === 1">
-      <div class="item" v-for="(item, index) in 20" :key="index">
+      <div class="item" v-for="(_, index) in 20" :key="index">
         {{ index }}
       </div>
     </div>
     <!-- grid布局 -->
     <div class="masonry_2" v-show="way === 2">
-      <div class="item" v-for="(item, index) in 20" :key="index">
+      <div class="item" v-for="(_, index) in 20" :key="index">
         {{ index }}
       </div>
     </div>
@@ -59,7 +66,10 @@ import Masonry from "masonry-layout";
 export default defineComponent({
   name: "masonry",
   setup() {
-    const way = ref(2);
+    const way = ref(0);
+    const handleChangeWay = (type) => {
+      way.value = type
+    }
     onMounted(() => {
       // grid布局
       const masonry = document.querySelector(".masonry_2");
@@ -106,12 +116,23 @@ export default defineComponent({
       column1,
       column2,
       column3,
+      handleChangeWay
     };
   },
 });
 </script>
 
 <style scoped lang="less">
+.masonry {
+  width: 100%;
+  height: 100%;
+  .operation {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 8px auto;
+  }
+}
 .flex {
   display: flex;
   gap: 8px;

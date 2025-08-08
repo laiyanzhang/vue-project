@@ -1,9 +1,13 @@
 <!-- 实现图片悬浮右侧展开预览大图弹窗功能，弹窗顶部与图片顶部平齐 -->
 <template>
   <div class="image_view">
-    <div class="image_list" ref="listRef">
-      <div class="image_item" v-for="(item, index) in imgList" :key="index">
-        <img :src="handleCom(item)" class="img" @mouseenter="e => handlePreview(e, item)" @mouseleave="preview.show = false"/>
+    <div class="sider" ref="listRef">
+      <div class="content" v-scroll="handleScrollBottom">
+        <div class="image_list">
+          <div class="image_item" v-for="(item, index) in imgList" :key="index">
+            <img :src="handleCom(item)" class="img" @mouseenter="e => handlePreview(e, item)" @mouseleave="preview.show = false"/>
+          </div>
+        </div>
       </div>
       <div class="module_view" v-show="preview.show" :style="previewStyle">
         <img :src="preview.url" class="img" />
@@ -18,7 +22,7 @@ import { getImg } from '@/utils/imgExample'
 
 export default defineComponent({
   setup() {
-    const imgList = ref(getImg(0, 12))
+    const imgList = ref(getImg(0, 24))
     const listRef = ref(null)
     const preview = reactive({
       top: 0,
@@ -58,13 +62,17 @@ export default defineComponent({
       preview.url = url + '?x-oss-process=image/resize,m_lfit,w_384'
       preview.show = true
     }
+    const handleScrollBottom = () => {
+      console.log('bottom')
+    }
     return {
       listRef,
       imgList,
       preview,
       previewStyle,
       handleCom,
-      handlePreview
+      handlePreview,
+      handleScrollBottom
     }
   }
 })
@@ -74,12 +82,22 @@ export default defineComponent({
 .image_view {
   width: 100%;
   height: 100%;
-  .image_list {
+  .sider {
     position: relative;
-    width: 404px;
     height: 100%;
+    width: 404px;
+    .content {
+      width: 100%;
+      height: 600px;
+      overflow: auto;
+      border: 1px solid #ededed;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .image_list {
     padding: 12px;
-    border: 1px solid #ededed;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -94,17 +112,17 @@ export default defineComponent({
         object-fit: cover;
       }
     }
-    .module_view {
-      position: absolute;
-      top: 0;
-      right: -404px;
-      width: 400px;
-      height: 528px;
-      background: #fff;
-      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.16);
-      padding: 8px;
-      border-radius: 12px;
-    }
+  }
+  .module_view {
+    position: absolute;
+    top: 0;
+    right: -404px;
+    width: 400px;
+    height: 528px;
+    background: #fff;
+    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.16);
+    padding: 8px;
+    border-radius: 12px;
   }
 }
 </style>

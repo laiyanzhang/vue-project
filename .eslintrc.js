@@ -25,5 +25,6 @@ module.exports = {
     semi: "off",
     "@typescript-eslint/semi": "off",
     "vue/no-v-model-argument": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
 }

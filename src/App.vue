@@ -1,21 +1,51 @@
 <template>
-  <div>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/masonry">masonry</router-link> |
-      <router-link to="/websocket">websocket</router-link> |
-      <router-link to="/canvas">canvas</router-link> |
-      <router-link to="/animation">animation</router-link> |
-      <router-link to="/imageView">imageView</router-link> |
-      <router-link to="/worker">worker</router-link> |
-      <router-link to="/editor">editor</router-link> |
-    </nav>
-    <router-view />
+  <div class="page">
+    <a-menu
+      v-model:selectedKeys="selectedKeys"
+      theme="dark"
+      :items="items"
+      @click="handleClick"
+      class="sider"
+    ></a-menu>
+    <div class="content">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style lang="less">
+<script>
+import { defineComponent, ref, computed } from 'vue'
+import { routes } from '@/router'
+import { useRouter, useRoute } from 'vue-router'
+
+export default defineComponent({
+  setup() {
+    const items = ref([])
+    const router = useRouter()
+    const currentRoute = useRoute()
+    const selectedKeys = computed(() => [currentRoute.path])
+    routes.forEach((route) => {
+      const item = {
+        key: route.path,
+        label: route.name
+      }
+      items.value.push(item)
+    });
+
+    const handleClick = (event) => {
+      router.push(event.key)
+    }
+    return {
+      items,
+      selectedKeys,
+      handleClick
+    }
+  },
+})
+</script>
+
+
+<style lang="less" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,6 +64,20 @@ nav {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  .sider {
+    width: 200px;
+  }
+  .content {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
   }
 }
 </style>

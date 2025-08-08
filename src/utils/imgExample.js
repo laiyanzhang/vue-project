@@ -1,4 +1,4 @@
-const examples = [
+let examples = [
   'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (2).png',
   'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (1).png',
   'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (3).png',
@@ -12,6 +12,8 @@ const examples = [
   'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/ins (23).png',
   'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/ins (1).png'
 ]
+
+examples = examples.concat(examples)
 
 export function getImg(start, end) {
   return examples.slice(start, end)

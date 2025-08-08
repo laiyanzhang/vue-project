@@ -1,5 +1,6 @@
 <template>
   <div class="canvas">
+    <a-alert message="图片与视频处理基于上传的文件" type="warning" />
     <a-upload
       v-model:file-list="fileList"
       name="file"
@@ -123,12 +124,13 @@ export default defineComponent({
 
 <style scoped lang="less">
 .canvas {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   .operation {
-    margin: 20px 0;
     display: flex;
     gap: 10px;
   }

@@ -1,62 +1,53 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: "首页",
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  },
-  {
     path: "/masonry",
-    name: "masonry",
+    name: "瀑布流",
     component: () =>
-      import(/* webpackChunkName: "masonry" */ "../views/demo/masonry.vue"),
+      import(/* webpackChunkName: "masonry" */ "../views/masonry.vue"),
   },
   {
     path: "/websocket",
-    name: "websocket",
+    name: "webSocket",
     component: () =>
-      import(/* webpackChunkName: "websocket" */ "../views/demo/websocket.vue"),
+      import(/* webpackChunkName: "websocket" */ "../views/websocket.vue"),
   },
   {
     path: "/canvas",
-    name: "canvas",
+    name: "画布",
     component: () =>
-      import(/* webpackChunkName: "canvas" */ "../views/demo/canvas.vue"),
+      import(/* webpackChunkName: "canvas" */ "../views/canvas.vue"),
   },
   {
     path: "/animation",
-    name: "animation",
+    name: "动画",
     component: () =>
-      import(/* webpackChunkName: "animation" */ "../views/demo/animation.vue"),
+      import(/* webpackChunkName: "animation" */ "../views/animation.vue"),
   },
   {
     path: "/imageView",
-    name: "imageView",
+    name: "图片预览",
     component: () =>
-      import(/* webpackChunkName: "imageView" */ "../views/demo/imageView.vue"),
+      import(/* webpackChunkName: "imageView" */ "../views/imageView.vue"),
   },
   {
     path: "/worker",
-    name: "worker",
+    name: "webWorker",
     component: () =>
-      import(/* webpackChunkName: "worker" */ "../views/demo/worker.vue"),
+      import(/* webpackChunkName: "worker" */ "../views/worker.vue"),
   },
   {
     path: "/editor",
-    name: "editor",
+    name: "编辑器",
     component: () =>
-      import(/* webpackChunkName: "worker" */ "../views/demo/editor.vue"),
+      import(/* webpackChunkName: "worker" */ "../views/editor.vue"),
   },
 ];
 

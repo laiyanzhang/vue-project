@@ -282,7 +282,15 @@ const addText = () => {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+.canvas-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
 canvas {
   border: 1px solid #ccc;
   background-color: white;
@@ -293,6 +301,5 @@ canvas {
   width: 400px;
   gap: 10px;
   margin: 0 auto;
-  margin-bottom: 12px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="worker">
+    <a-alert message="图片处理基于上传的图片" type="warning" />
     <a-upload
       v-model:file-list="fileList"
       :customRequest="customUpload"
@@ -83,7 +84,7 @@ export default defineComponent({
       const bitmap = await createImageBitmap(file)
 
       if(!workerFilter) {
-        workerFilter = new Worker(new URL('../../utils/worker/filterWorker.js', import.meta.url));    
+        workerFilter = new Worker(new URL('../utils/worker/filterWorker.js', import.meta.url));    
         // 统一处理消息
         workerFilter.onmessage = (e) => {
           if (e.data.type === 'result') {
@@ -106,7 +107,7 @@ export default defineComponent({
     };
 
     const createWorkerDrawer = (message, transferArray) => {
-      workerDrawer = new Worker(new URL('../../utils/worker/filterWorker.js', import.meta.url))
+      workerDrawer = new Worker(new URL('../utils/worker/filterWorker.js', import.meta.url))
       const mainCanvas = canvas.value.transferControlToOffscreen()
       message.mainCanvas = mainCanvas
       transferArray.push(mainCanvas)
@@ -183,12 +184,13 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .worker {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   .operation {
-    margin: 20px 0;
     display: flex;
     gap: 10px;
   }

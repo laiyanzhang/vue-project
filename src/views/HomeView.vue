@@ -1,18 +1,58 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <h1>{{ $t('common.welcome') }}</h1>
+    <div class="operation">
+      <a-button @click="handleLocale('zh')">中文</a-button>
+      <a-button @click="handleLocale('en')">English</a-button>
+      <a-button @click="handleConfirm">确认弹窗</a-button>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "../components/HelloWorld.vue";
+<script>
+import { defineComponent, inject  } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-@Options({
-  components: {
-    HelloWorld,
-  },
+export default defineComponent({
+  setup() {
+    const confirm = inject('confirm')
+    const { locale } = useI18n()
+    const handleLocale = (lang) => {
+      locale.value = lang
+      localStorage.setItem('locale', lang)
+    }
+    const handleConfirm = () => {
+      confirm({
+        title: '注意',
+        content: '确认信息',
+        okFn: () => {
+          console.log('ok')
+        },
+        cancelFn: () => {
+          console.log('cancel')
+        }
+      })
+    }
+    return {
+      handleLocale,
+      handleConfirm
+    }
+  }
 })
-export default class HomeView extends Vue {}
 </script>
+
+<style scoped lang="less">
+.home {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .operation {
+    display: flex;
+    gap: 16px;
+  }
+}
+</style>
