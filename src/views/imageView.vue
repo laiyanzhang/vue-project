@@ -5,7 +5,7 @@
       <div class="content" v-scroll="handleScrollBottom">
         <div class="image_list">
           <div class="image_item" v-for="(item, index) in imgList" :key="index">
-            <img :src="handleCom(item)" class="img" @mouseenter="e => handlePreview(e, item)" @mouseleave="preview.show = false"/>
+            <img :src="item" class="img" @mouseenter="e => handlePreview(e, item)" @mouseleave="preview.show = false"/>
           </div>
         </div>
       </div>
@@ -51,15 +51,12 @@ export default defineComponent({
         top: top + 'px'
       }
     })
-    const handleCom = (url) => {
-      return url + '?x-oss-process=image/resize,m_lfit,w_120'
-    }
     // 获取当前图片顶部与视口顶部的距离top和底部的距离bottom
     const handlePreview = (e, url) => {
       const targetRect = e.target.getBoundingClientRect()
       preview.bottom = window.innerHeight - targetRect.top
       preview.top = targetRect.top
-      preview.url = url + '?x-oss-process=image/resize,m_lfit,w_384'
+      preview.url = url
       preview.show = true
     }
     const handleScrollBottom = () => {
@@ -70,7 +67,6 @@ export default defineComponent({
       imgList,
       preview,
       previewStyle,
-      handleCom,
       handlePreview,
       handleScrollBottom
     }
@@ -123,6 +119,11 @@ export default defineComponent({
     box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.16);
     padding: 8px;
     border-radius: 12px;
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 </style>

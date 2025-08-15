@@ -41,7 +41,7 @@ const createConfirmDialog = () => {
     confirm: excute,
     
     // 可选：安装到应用实例
-    install(app: any, config: config) {
+    install(app: any, config: config = {}) {
       const { globalProperty = false, provideKey = 'confirm' } = config
       
       if (globalProperty) app.config.globalProperties.$confirm = excute  

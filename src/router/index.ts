@@ -49,6 +49,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "worker" */ "../views/editor.vue"),
   },
+  {
+    path: "/fabric",
+    name: "fabric",
+    component: () =>
+      import(/* webpackChunkName: "worker" */ "../views/fabric.vue"),
+  }
 ];
 
 const router = createRouter({

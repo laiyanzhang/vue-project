@@ -1,16 +1,13 @@
 let examples = [
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (2).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (1).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/China (3).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/high (13).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/high (19).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/high (16).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/concise (1).jpg',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/concise (1).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/concise (2).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/ins (22).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/ins (23).png',
-  'https://insight-gpt.oss-cn-shenzhen.aliyuncs.com/post/20250609/ins (1).png'
+  require('../assets/page1.jpeg'),
+  require('../assets/page2.jpeg'),
+  require('../assets/page3.jpeg'),
+  require('../assets/page4.jpg'),
+  require('../assets/page5.jpg'),
+  require('../assets/page6.jpg'),
+  require('../assets/page7.jpg'),
+  require('../assets/page8.jpg'),
+  require('../assets/page9.jpg'),
 ]
 
 examples = examples.concat(examples)

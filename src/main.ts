@@ -16,7 +16,7 @@ app.use(router);
 app.use(Antd)
 app.use(i18n);
 app.use(directives)
-app.use(dialog, {})
+app.use(dialog)
 app.component('AIcon', AIcon)
 
 app.mount('#app');

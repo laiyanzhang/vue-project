@@ -40,9 +40,6 @@
       </div>
     </div>
     <h2>球体自由落体</h2>
-    <div class="operate">
-      <a-button @click="handleStart">开始</a-button>
-    </div>
     <div class="ball_scene">
       <div class="ball" ref="ball"></div>
     </div>
@@ -185,7 +182,7 @@ export default defineComponent({
       scene,
       ball,
       handleAnimate,
-      handleReset
+      handleReset,
     }
   }
 })
@@ -350,6 +347,44 @@ export default defineComponent({
   }
   .ball_scene {
     height: 300px;
+    position: relative;
+    .ball {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #ff5722;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) translateX(-50%) scale(1, 1);
+      }
+      10% {
+        transform: translateY(0) translateX(-50%) scale(1.2, 0.8);
+      }
+      30% {
+        transform: translateY(-200px) translateX(-50%) scale(1, 1);
+      }
+      50% {
+        transform: translateY(0) translateX(-50%) scale(1.1, 0.9);
+      }
+      55% {
+        transform: translateY(0) translateX(-50%) scale(1, 1);
+      }
+      70% {
+        transform: translateY(-100px) translateX(-50%) scale(1, 1);
+      }
+      80% {
+        transform: translateY(0) translateX(-50%) scale(1.05, 0.95);
+      }
+      85% {
+        transform: translateY(0) translateX(-50%) scale(1, 1);
+      }
+    }
   }
 }
 </style>
